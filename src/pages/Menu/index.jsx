@@ -13,7 +13,7 @@ const Menu = () => {
 
     useEffect(() => {
         dispatch(fetchProducts())
-    }, [])
+    }, [dispatch])
 
     const onAddProduct = (product) => {
         dispatch(addToCart(product))
@@ -23,7 +23,6 @@ const Menu = () => {
         setActiveTab(newActiveTab);
         let categories = products.products.map((product) => product.name.name);
         let index = categories.findIndex(category => newActiveTab === category);
-        console.log(index);
         if (index > -1) {
             setActiveTabIndex(index);
         } else {

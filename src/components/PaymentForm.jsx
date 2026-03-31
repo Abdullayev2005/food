@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { clearCart, cartProducts } from "../stores/cart/cartSlice";
 import { getAddress, clearAddress } from "../stores/userInfo/addressSlice";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Button from "./elements/Button";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
@@ -76,6 +76,9 @@ const PaymentForm = () => {
             <div className="my-4">
                 <CardElement id="card-element" />
             </div>
+            {error && (
+                <p className="text-red-500 text-sm my-2">{String(error?.message || error)}</p>
+            )}
             <div className="flex justify-center p-2">
                 <Button type="submit" disbled={loading}>
                     {
